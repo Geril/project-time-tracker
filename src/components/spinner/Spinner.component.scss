@@ -1,0 +1,22 @@
+@import '_variables';
+
+.ptt-loader {
+    border: $loader-border-size solid $loader-background;
+    border-top: $loader-border-size solid $loader-active;
+    border-radius: 50%;
+    width: $loader-size;
+    height: $loader-size;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+    &.small {
+        border: $loader-border-size / 2 solid $loader-background;
+        border-top: $loader-border-size / 2 solid $loader-active;
+        width: $loader-size / 2;
+        height: $loader-size / 2;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,13 @@
+.ptt-project {
+    &.bigger-padding {
+        a {
+            padding-right: 65px;
+        }
+    }
+    .recording {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

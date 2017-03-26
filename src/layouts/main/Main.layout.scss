@@ -1,0 +1,12 @@
+.main-layout {
+    width: 800px;
+    margin: 0 auto;
+    .left {
+        display: inline-block;
+        width: 30%;
+    }
+    .content {
+        display: inline-block;
+        width: 70%;
+    }
+}

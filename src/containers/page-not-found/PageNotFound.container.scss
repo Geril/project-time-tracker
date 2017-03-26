@@ -1,0 +1,11 @@
+.not-found {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    .darth-vader {
+        display: inline-block;
+    }
+}

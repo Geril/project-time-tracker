@@ -1,0 +1,15 @@
+@import '_variables';
+
+.ptt-navbar {
+    .site-name > a {
+        @media (max-width: $screen-xs-max) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .user-info {
+        @media (max-width: $screen-xs-max) {
+            text-align: center;
+        }
+    }
+}
