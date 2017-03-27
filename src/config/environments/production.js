@@ -3,6 +3,7 @@ import defaultConfig from 'config/environments/default';
 const configuration = {
     ...defaultConfig,
     CONFIG_NAME: 'Production Config',
+    MAIN_APP_AUTHORITY: 'https://ptt-be.herokuapp.com',
 };
 
 export default configuration;

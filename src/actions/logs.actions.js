@@ -1,13 +1,23 @@
 import AppConfig from 'config/appConfig';
 import * as actionTypes from 'actions/actionTypes';
+import { browserHistory } from 'react-router';
 import fetch from 'httpService';
+
+const processFailure = (response, dispatch) => {
+    if (AppConfig.ENV !== 'testing') {
+        browserHistory.push('/');
+    }
+    dispatch({
+        type: actionTypes.FETCH_PROJECT_LOGS_REQUEST_FAILURE,
+    });
+};
 
 export function fetchProjectLogs(projectId) {
     const promise = fetch(`${AppConfig.LOGS_ENDPOINT}/${projectId}`);
     return {
         onRequest: actionTypes.FETCH_PROJECT_LOGS_REQUEST_TRIGGERED,
         onSuccess: actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS,
-        onFailure: actionTypes.FETCH_PROJECT_LOGS_REQUEST_FAILURE,
+        onFailure: processFailure,
         promise,
     };
 }
