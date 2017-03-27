@@ -19,6 +19,7 @@ export function fetchProjectLogs(projectId) {
         onSuccess: actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS,
         onFailure: processFailure,
         promise,
+        projectId,
     };
 }
 

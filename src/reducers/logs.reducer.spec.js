@@ -42,6 +42,7 @@ describe('Logs reducer', () => {
                 humanDuration: '01:20:00.000',
             }],
             currentProjectTotal: '01:27:00.000',
+            currentProjectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
         };
 
         const resultState = logsReducer(deepFreeze(initialState), {
@@ -65,6 +66,7 @@ describe('Logs reducer', () => {
                 from: 1490553578339,
                 to: 1490558378339,
             }],
+            projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
         });
 
         assert.deepEqual(resultState, expectedState);
@@ -99,11 +101,13 @@ describe('Logs reducer', () => {
                 humanDuration: '01:20:00.000',
             }],
             currentProjectTotal: '01:27:00.000',
+            currentProjectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
         };
 
         const expectedState = {
             currentProjectLogs: [],
             currentProjectTotal: '',
+            currentProjectId: '',
         };
 
         const resultState = logsReducer(deepFreeze(initialState), {
@@ -165,10 +169,14 @@ describe('Logs reducer', () => {
                 from: '1490564900767',
                 to: 'running',
             },
+            currentProjectLogs: [],
+            currentProjectTotal: '',
         };
 
         const expectedState = {
             activeLog: {},
+            currentProjectLogs: [],
+            currentProjectTotal: '',
         };
 
         const resultState = logsReducer(deepFreeze(initialState), {

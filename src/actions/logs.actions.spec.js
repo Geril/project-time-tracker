@@ -48,10 +48,12 @@ describe('Log actions', () => {
         const expectedActions = [
             {
                 type: actionTypes.FETCH_PROJECT_LOGS_REQUEST_TRIGGERED,
+                projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
             },
             {
                 type: actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS,
                 response,
+                projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
             },
         ];
 
