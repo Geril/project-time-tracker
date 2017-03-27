@@ -28,6 +28,7 @@ var common = [
     'react-css-modules',
     'redux-form',
     'moment',
+    'react-router',
 ];
 
 var plugins = [
