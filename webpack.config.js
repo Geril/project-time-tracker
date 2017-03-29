@@ -84,7 +84,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'file?name=[name].[ext]',
+                loader: testing ? 'null' : 'file?name=[name].[ext]',
             },
             {
                 test: /\.(scss)$/,
@@ -102,7 +102,7 @@ module.exports = {
             },
             {
                 test: /\.(gif|png|svg)$/,
-                loader: 'url-loader?mimetype=image/png&limit=10000&name=/assets/images/[name]-[hash].[ext]',
+                loader: testing ? 'null' : 'url-loader?mimetype=image/png&limit=10000&name=/assets/images/[name]-[hash].[ext]',
             },
             {
                 test: /\.json$/,
