@@ -42,3 +42,25 @@ export function createProject(name, description, userId) {
         promise,
     };
 }
+
+const handleProjectDeletion = (response, dispatch) => {
+    if (AppConfig.ENV !== 'testing') {
+        browserHistory.push('/');
+    }
+    dispatch({
+        type: actionTypes.DELETE_PROJECT_REQUEST_SUCCESS,
+        response,
+    });
+};
+
+export function deleteProject(projectId) {
+    const promise = fetch(`${AppConfig.PROJECT_ENDPOINT}/${projectId}`, {
+        method: 'DELETE',
+    });
+    return {
+        onRequest: actionTypes.DELETE_PROJECT_REQUEST_TRIGGERED,
+        onSuccess: handleProjectDeletion,
+        onFailure: actionTypes.DELETE_PROJECT_REQUEST_FAILURE,
+        promise,
+    };
+}

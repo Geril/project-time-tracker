@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 
-import { fetchProjectLogs, clearCurrentProject } from 'actions/index.actions';
+import {
+    fetchProjectLogs,
+    clearCurrentProject,
+    deleteProject,
+} from 'actions/index.actions';
 
 import Spinner from 'components/spinner/Spinner.component';
 
@@ -23,9 +27,12 @@ class ProjectDetail extends React.Component {
         return (
             <div styleName="ptt-project-detail">
                 {currentProject ?
-                    <div>
+                    <div styleName="detail-wrapper">
                         <h2>{currentProject.name}</h2>
                         <p>{currentProject.description}</p>
+                        <div styleName="actions">
+                            <button onClick={this.props.deleteProject.bind(null, currentProject.id)} className="btn btn-danger">Delete</button>
+                        </div>
                     </div>
                 :
                     <div styleName="spinner-wrapper">
@@ -86,6 +93,7 @@ ProjectDetail.propTypes = {
     }),
     fetchProjectLogs: React.PropTypes.func.isRequired,
     clearCurrentProject: React.PropTypes.func.isRequired,
+    deleteProject: React.PropTypes.func.isRequired,
 
 };
 
@@ -103,4 +111,8 @@ const mapStateToProps = state => ({
     },
 });
 
-export default connect(mapStateToProps, { fetchProjectLogs, clearCurrentProject })(cssModules(ProjectDetail, styles, { allowMultiple: true }));
+export default connect(mapStateToProps, {
+    fetchProjectLogs,
+    clearCurrentProject,
+    deleteProject,
+})(cssModules(ProjectDetail, styles, { allowMultiple: true }));

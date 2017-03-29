@@ -1,4 +1,15 @@
 .ptt-project-detail {
+    .detail-wrapper {
+        position: relative;
+        padding-right: 85px;
+        .actions {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
     .spinner-wrapper {
         margin-top: 50px;
         text-align: center;

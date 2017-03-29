@@ -80,4 +80,38 @@ describe('Project actions', () => {
         const store = mockStore(getState, expectedActions, done);
         store.dispatch(actions.createProject());
     });
+
+    it('It should delete existing project', (done) => {
+        const response = [{
+            id: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
+            name: 'Lorem ipsum',
+            description: 'Lorem ipsum dolor sit amet',
+            author: 1,
+            created: 1490776282202,
+        }, {
+            id: 'b823cd29-423f-4c45-90ab-27efef0e1966-g28',
+            name: 'Quisquam eaque',
+            description: 'Quisquam eaque consequuntur maxime deleniti',
+            author: 1,
+            created: 1490776282202,
+        }];
+
+        mockedFetch.registerRequest(`${AppConfig.PROJECT_ENDPOINT}/734742af-9a5e-42ce-8300-39b94eb8d157-g28`, {
+            method: 'DELETE',
+        }).reply(response);
+
+        const getState = {};
+        const expectedActions = [
+            {
+                type: actionTypes.DELETE_PROJECT_REQUEST_TRIGGERED,
+            },
+            {
+                type: actionTypes.DELETE_PROJECT_REQUEST_SUCCESS,
+                response,
+            },
+        ];
+
+        const store = mockStore(getState, expectedActions, done);
+        store.dispatch(actions.deleteProject('734742af-9a5e-42ce-8300-39b94eb8d157-g28'));
+    });
 });
