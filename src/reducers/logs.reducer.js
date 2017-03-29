@@ -1,5 +1,6 @@
 import moment from 'moment';
 import * as actionTypes from 'actions/actionTypes';
+import AppConfig from 'config/appConfig';
 
 const initialState = {
     currentProjectLogs: [],
@@ -9,10 +10,10 @@ const initialState = {
 };
 
 const makeHumanReadable = (item) => {
-    const from = moment(item.from).format('DD.MM.YYYY - HH:mm:ss');
-    const to = moment(item.to).format('DD.MM.YYYY - HH:mm:ss');
+    const from = moment(item.from).format(AppConfig.DATE_TIME_FORMAT);
+    const to = moment(item.to).format(AppConfig.DATE_TIME_FORMAT);
     const duration = item.to - item.from;
-    const humanDuration = moment.utc(duration).format('HH:mm:ss.SSS');
+    const humanDuration = moment.utc(duration).format(AppConfig.LOG_TIME_FORMAT);
     return {
         id: item.id,
         projectId: item.projectId,
@@ -30,7 +31,7 @@ export default function logs(state = initialState, action) {
         case actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS: {
             const formatedLogs = action.response.filter(item => item.to !== 'running').map(makeHumanReadable);
             const total = formatedLogs.reduce((acc, val) => acc + val.duration, 0);
-            const humanTotal = (moment.utc(total).format('HH:mm:ss.SSS'));
+            const humanTotal = (moment.utc(total).format(AppConfig.LOG_TIME_FORMAT));
             return {
                 ...state,
                 currentProjectLogs: formatedLogs,
@@ -62,7 +63,7 @@ export default function logs(state = initialState, action) {
                 const updated = newLogItem.filter(item => item.to !== 'running').map(makeHumanReadable);
                 newCurrentProjectLogs.unshift(updated[0]);
                 const total = newCurrentProjectLogs.reduce((acc, val) => acc + val.duration, 0);
-                humanTotal = (moment.utc(total).format('HH:mm:ss.SSS'));
+                humanTotal = (moment.utc(total).format(AppConfig.LOG_TIME_FORMAT));
             }
             return {
                 ...state,

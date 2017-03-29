@@ -1,8 +1,10 @@
 /* eslint-env mocha */
 /* eslint-disable import/no-extraneous-dependencies */
 
+import moment from 'moment';
 import assert from 'assert';
 import deepFreeze from 'deep-freeze';
+import AppConfig from 'config/appConfig';
 
 import * as actionTypes from 'actions/actionTypes';
 import logsReducer from './logs.reducer';
@@ -20,24 +22,24 @@ describe('Logs reducer', () => {
                 id: '7a061161-a282-4cce-9c95-b08bd2e017ff',
                 projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
                 userId: 1,
-                from: '26.03.2017 - 22:01:38',
-                to: '26.03.2017 - 22:05:38',
+                from: moment(1490558498339).format(AppConfig.DATE_TIME_FORMAT),
+                to: moment(1490558738339).format(AppConfig.DATE_TIME_FORMAT),
                 duration: 240000,
                 humanDuration: '00:04:00.000',
             }, {
                 id: '03dc0e53-6c31-44d4-9f36-7ffb53733606',
                 projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
                 userId: 1,
-                from: '26.03.2017 - 21:39:38',
-                to: '26.03.2017 - 21:42:38',
+                from: moment(1490557178338).format(AppConfig.DATE_TIME_FORMAT),
+                to: moment(1490557358338).format(AppConfig.DATE_TIME_FORMAT),
                 duration: 180000,
                 humanDuration: '00:03:00.000',
             }, {
                 id: '51ac6088-3565-47b0-8c7c-399f5c0cd14d',
                 projectId: '00b1be66-02a8-41c9-bb81-240eca7beac8-g28',
                 userId: 1,
-                from: '26.03.2017 - 20:39:38',
-                to: '26.03.2017 - 21:59:38',
+                from: moment(1490553578339).format(AppConfig.DATE_TIME_FORMAT),
+                to: moment(1490558378339).format(AppConfig.DATE_TIME_FORMAT),
                 duration: 4800000,
                 humanDuration: '01:20:00.000',
             }],

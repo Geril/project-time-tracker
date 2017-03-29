@@ -3,6 +3,7 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Field, reduxForm } from 'redux-form';
+import AppConfig from 'config/appConfig';
 
 import { startLog, stopLog, fetchRunningLog } from 'actions/index.actions';
 
@@ -36,7 +37,7 @@ class RightSidebar extends React.Component {
                                 {Object.keys(this.props.logs.activeLog).length !== 0 ?
                                     <div>
                                         <h4>Logging Since:</h4>
-                                        {moment(Number(this.props.logs.activeLog.from)).format('DD.MM.YYYY - HH:mm:ss')}
+                                        {moment(Number(this.props.logs.activeLog.from)).format(AppConfig.DATE_TIME_FORMAT)}
                                         <h4>Project:</h4>
                                         {this.props.projects.projects.find(item => item.id === this.props.logs.activeLog.projectId).name}
                                         <div styleName="button-wrapper">
