@@ -9,6 +9,8 @@ const initialState = {
     isStartingLog: false,
     isStoppingLog: false,
     isFetchingCurrentLog: false,
+    isDeletingProject: false,
+    isDeletingLog: false,
 };
 
 export default function appState(state = initialState, action) {
@@ -115,6 +117,34 @@ export default function appState(state = initialState, action) {
             return {
                 ...state,
                 isFetchingCurrentLog: initialState.isFetchingCurrentLog,
+            };
+        }
+        // Delete project
+        case actionTypes.DELETE_PROJECT_REQUEST_TRIGGERED: {
+            return {
+                ...state,
+                isDeletingProject: true,
+            };
+        }
+        case actionTypes.DELETE_PROJECT_REQUEST_SUCCESS:
+        case actionTypes.DELETE_PROJECT_REQUEST_FAILURE: {
+            return {
+                ...state,
+                isDeletingProject: initialState.isDeletingProject,
+            };
+        }
+        // Delete log
+        case actionTypes.DELETE_LOG_REQUEST_TRIGGERED: {
+            return {
+                ...state,
+                isDeletingLog: true,
+            };
+        }
+        case actionTypes.DELETE_LOG_REQUEST_SUCCESS:
+        case actionTypes.DELETE_LOG_REQUEST_FAILURE: {
+            return {
+                ...state,
+                isDeletingLog: initialState.isDeletingLog,
             };
         }
         default: {

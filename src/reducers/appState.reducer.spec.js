@@ -280,4 +280,80 @@ describe('AppState reducer', () => {
         assert.deepEqual(resultState1, expectedState);
         assert.deepEqual(resultState2, expectedState);
     });
+
+    // Delete project
+    it('It should set "isDeletingProject" to true when request to delete project endpoint is made', () => {
+        const initialState = {
+            isDeletingProject: false,
+        };
+
+        const expectedState = {
+            isDeletingProject: true,
+        };
+
+        const resultState = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_PROJECT_REQUEST_TRIGGERED,
+        });
+
+        assert.deepEqual(resultState, expectedState);
+    });
+
+    it('It should set "isDeletingProject" to false when request to delete project endpoint is finished', () => {
+        const initialState = {
+            isDeletingProject: true,
+        };
+
+        const expectedState = {
+            isDeletingProject: false,
+        };
+
+        const resultState1 = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_PROJECT_REQUEST_SUCCESS,
+        });
+
+        const resultState2 = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_PROJECT_REQUEST_FAILURE,
+        });
+
+        assert.deepEqual(resultState1, expectedState);
+        assert.deepEqual(resultState2, expectedState);
+    });
+
+    // Delete log
+    it('It should set "isDeletingLog" to true when request to delete log endpoint is made', () => {
+        const initialState = {
+            isDeletingLog: false,
+        };
+
+        const expectedState = {
+            isDeletingLog: true,
+        };
+
+        const resultState = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_LOG_REQUEST_TRIGGERED,
+        });
+
+        assert.deepEqual(resultState, expectedState);
+    });
+
+    it('It should set "isDeletingLog" to false when request to delete log endpoint is finished', () => {
+        const initialState = {
+            isDeletingLog: true,
+        };
+
+        const expectedState = {
+            isDeletingLog: false,
+        };
+
+        const resultState1 = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_LOG_REQUEST_SUCCESS,
+        });
+
+        const resultState2 = appStateReducer(deepFreeze(initialState), {
+            type: actionTypes.DELETE_LOG_REQUEST_FAILURE,
+        });
+
+        assert.deepEqual(resultState1, expectedState);
+        assert.deepEqual(resultState2, expectedState);
+    });
 });

@@ -28,8 +28,10 @@ const makeHumanReadable = (item) => {
 export default function logs(state = initialState, action) {
     switch (action.type) {
         // Fetch logs for current project
-        case actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS: {
-            const formatedLogs = action.response.filter(item => item.to !== 'running').map(makeHumanReadable);
+        // Update logs after successful log item deletion
+        case actionTypes.FETCH_PROJECT_LOGS_REQUEST_SUCCESS:
+        case actionTypes.DELETE_LOG_REQUEST_SUCCESS: {
+            const formatedLogs = action.response.filter(item => item.to !== 'running' && item.projectId === action.projectId).map(makeHumanReadable);
             const total = formatedLogs.reduce((acc, val) => acc + val.duration, 0);
             const humanTotal = (moment.utc(total).format(AppConfig.LOG_TIME_FORMAT));
             return {

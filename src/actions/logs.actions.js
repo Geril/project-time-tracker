@@ -81,3 +81,16 @@ export function stopLog(obj) {
         promise,
     };
 }
+
+export function deleteLog(logId, projectId) {
+    const promise = fetch(`${AppConfig.LOG_ENDPOINT}/${logId}`, {
+        method: 'DELETE',
+    });
+    return {
+        onRequest: actionTypes.DELETE_LOG_REQUEST_TRIGGERED,
+        onSuccess: actionTypes.DELETE_LOG_REQUEST_SUCCESS,
+        onFailure: actionTypes.DELETE_LOG_REQUEST_FAILURE,
+        promise,
+        projectId,
+    };
+}

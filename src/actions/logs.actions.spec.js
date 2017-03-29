@@ -152,4 +152,40 @@ describe('Log actions', () => {
         const store = mockStore(getState, expectedActions, done);
         store.dispatch(actions.stopLog({ id: 'daba95fd-cb78-4c3a-b2f5-b5e2c86945ce' }));
     });
+
+    it('It should delete existing log', (done) => {
+        const response = [{
+            id: '6587aa84-cf4c-4bec-a35a-25fa9b3505be',
+            projectId: 'b823cd29-423f-4c45-90ab-27efef0e1966-g28',
+            userId: 1,
+            from: 1490790570154,
+            to: 1490790578706,
+        }, {
+            id: '1a7d0f65-92de-4e01-b907-87e72de9ff5f',
+            projectId: 'b823cd29-423f-4c45-90ab-27efef0e1966-g28',
+            userId: 1,
+            from: 1490778153399,
+            to: 1490778155143,
+        }];
+
+        mockedFetch.registerRequest(`${AppConfig.LOG_ENDPOINT}/e7466173-b1f5-40c6-a60d-2af73b77ee0f`, {
+            method: 'DELETE',
+        }).reply(response);
+
+        const getState = {};
+        const expectedActions = [
+            {
+                type: actionTypes.DELETE_LOG_REQUEST_TRIGGERED,
+                projectId: 'b823cd29-423f-4c45-90ab-27efef0e1966-g28',
+            },
+            {
+                type: actionTypes.DELETE_LOG_REQUEST_SUCCESS,
+                response,
+                projectId: 'b823cd29-423f-4c45-90ab-27efef0e1966-g28',
+            },
+        ];
+
+        const store = mockStore(getState, expectedActions, done);
+        store.dispatch(actions.deleteLog('e7466173-b1f5-40c6-a60d-2af73b77ee0f', 'b823cd29-423f-4c45-90ab-27efef0e1966-g28'));
+    });
 });
