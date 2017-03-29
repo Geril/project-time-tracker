@@ -92,7 +92,7 @@ describe('Project reducer', () => {
     });
 
     // Create Project
-    it('It should  add newly created project into array as first element', () => {
+    it('It should add newly created project into array as first element', () => {
         const initialState = {
             projects: [{
                 id: '43a0be11-90cf-45fb-9651-7f38ee11bea5',
