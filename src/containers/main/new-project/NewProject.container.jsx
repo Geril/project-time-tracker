@@ -26,6 +26,13 @@ class NewProject extends React.Component {
                         <label htmlFor="description">Project Description</label>
                         <Field name="description" component="input" id="description" type="text" placeholder="Say something about your project" className="form-control" required />
                     </div>
+                    <div className="form-group">
+                        <label htmlFor="price">Project Price</label>
+                        <div className="input-group">
+                            <div className="input-group-addon">&euro;</div>
+                            <Field name="price" component="input" id="price" type="text" placeholder="Hourly rate for project" className="form-control" />
+                        </div>
+                    </div>
                     <button type="submit" className="btn btn-primary" disabled={this.props.pristine || this.props.submitting || this.props.appState.isCreatingProject}>Create</button>
                 </form>
             </div>
